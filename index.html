@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ログインページ</title>
+</head>
+<body>
+  <h1>ログイン</h1>
+
+  <form onsubmit="return checkLogin()">
+    <label>ID: <input type="text" name="id" required></label><br>
+    <label>PASS: <input type="password" name="pass" required></label><br><br>
+
+    <label>ログイン区分：</label><br>
+    <select id="role" name="role" required>
+      <option value="">-- 選択してください --</option>
+      <option value="factory">工場</option>
+      <option value="agency">派遣会社</option>
+    </select><br><br>
+
+    <button type="submit">ログイン</button>
+  </form>
+
+  <script>
+  function checkLogin() {
+    const id = document.querySelector('input[name="id"]').value;
+    const pass = document.querySelector('input[name="pass"]').value;
+    const role = document.querySelector('#role').value;
+
+    if (id === "ABC" && pass === "1234" && role === "factory") {
+      // ✅ 工場ユーザー：成功！
+      window.location.href = "factory.html";
+    } else if (id === "DEF" && pass === "5678" && role === "agency") {
+      // ✅ 派遣会社ユーザー：成功！
+      window.location.href = "agency.html";
+    } else {
+      // ❌ どれにも当てはまらない場合
+      alert("ID、パスワード、または区分が間違っています。");
+    }
+
+    return false; // フォームの送信を止める
+  }
+</script>
+</body>
+</html>
